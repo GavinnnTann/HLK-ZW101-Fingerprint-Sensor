@@ -24,6 +24,7 @@ Connect the module's wires to your USB-serial adapter as follows.
 
 > **Note:** TX and RX are labelled from the adapter's perspective.
 > Black (module) → adapter TX means the adapter transmits to the module.
+> Colour scheme is based on the Hi-Link distributor, colour may vary between different vendors
 
 | HL-ZW101 Wire | Adapter Pin |
 |------|-------------|

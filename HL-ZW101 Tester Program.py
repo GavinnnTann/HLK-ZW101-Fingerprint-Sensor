@@ -7,9 +7,12 @@ import sys
 import threading
 import time
 import struct
+import pathlib
 
 import serial
 import serial.tools.list_ports
+
+_ICON = str(pathlib.Path(__file__).parent / "Images" / "Fingerprint ICO.ico")
 
 from PyQt6.QtWidgets import (
     QApplication, QMainWindow, QWidget, QTabWidget,
@@ -19,7 +22,7 @@ from PyQt6.QtWidgets import (
     QSplitter, QFrame, QScrollArea,
 )
 from PyQt6.QtCore import Qt, pyqtSignal
-from PyQt6.QtGui import QPainter, QColor, QFont, QPalette
+from PyQt6.QtGui import QPainter, QColor, QFont, QPalette, QIcon
 
 # ── Protocol constants ──────────────────────────────────────────────────────────
 HEADER  = bytes([0xEF, 0x01])
@@ -207,6 +210,7 @@ class App(QMainWindow):
         super().__init__()
         self._ui_signal.connect(lambda fn: fn())
         self.setWindowTitle("ZW101 Fingerprint Tester  [FPS / EF01]")
+        self.setWindowIcon(QIcon(_ICON))
         self.resize(1020, 820)
         self.ser   = None
         self.lock  = threading.Lock()
@@ -1152,6 +1156,7 @@ class App(QMainWindow):
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
+    app.setWindowIcon(QIcon(_ICON))
     # Snapshot the native system theme before touching anything
     apply_theme(app, "system")
     # Detect whether the system is dark or light and apply the matching
