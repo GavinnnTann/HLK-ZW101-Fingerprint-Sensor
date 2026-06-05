@@ -35,6 +35,11 @@ Connect the module's wires to your USB-serial adapter as follows.
 > **Note:** TX and RX are labelled from the adapter's perspective.
 > Black (module) → adapter TX means the adapter transmits to the module.
 > Colour scheme is based on the Hi-Link distributor above, colour may vary between different vendors.
+>
+> **TOUCH_OUT (Blue):** Leave unconnected for USB testing.
+> For embedded use, connect to a GPIO pin — the sensor asserts this HIGH when a finger is detected,
+> making it suitable for interrupt-driven wakeup from deep sleep on ESP32 / STM32.
+> See the datasheet for electrical specs.
 
 | HLK-ZW101 Wire | Adapter Pin |
 |------|-------------|
@@ -42,7 +47,7 @@ Connect the module's wires to your USB-serial adapter as follows.
 | ⚫ Black (RX) | TX |
 | 🟡 Yellow (TX) | RX |
 | 🟢 Green (VCC)| 3V3 |
-| 🔵 Blue (TOUCH_OUT) | NC (leave unconnected) |
+| 🔵 Blue (TOUCH_OUT) | NC (leave unconnected for USB testing) |
 | ⚪ White (V_SENSOR)| 3V3 |
 
 
