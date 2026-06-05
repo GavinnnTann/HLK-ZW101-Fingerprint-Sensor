@@ -39,7 +39,7 @@ Connect the module's wires to your USB-serial adapter as follows.
 > **TOUCH_OUT (Blue):** Leave unconnected for USB testing.
 > For embedded use, connect to a GPIO pin — the sensor asserts this HIGH when a finger is detected,
 > making it suitable for interrupt-driven wakeup from deep sleep on ESP32 / STM32.
-> See the datasheet for electrical specs.
+> Low power design is available — refer to the [datasheet](HLK-ZW101%20Datasheet.pdf).
 
 | HLK-ZW101 Wire | Adapter Pin |
 |------|-------------|
