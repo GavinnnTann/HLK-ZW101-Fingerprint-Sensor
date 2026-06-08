@@ -31,6 +31,7 @@ Built on top of the [Adafruit Fingerprint Sensor Library](https://github.com/ada
 ## Wiring
 
 Connect the module's wires to your USB-serial adapter as follows.
+Instead of using the adapter, microcontrollers like Arduino, ESP32, STM32, Pico and RasberryPi can be used to run the program and test the fingerprint sensor as well.
 
 > **Note:** TX and RX are labelled from the adapter's perspective.
 > Black (module) → adapter TX means the adapter transmits to the module.
