@@ -56,8 +56,10 @@ void setup() {
 }
 
 void loop() {
-    // ── Breathing ────────────────────────────────────────────────────────────
-    Serial.println(F("[ Breathing ]"));
+    // ── Breathing ─────────────────────────────────────────────────────────────
+    // LED fades in and out smoothly in a continuous sine-wave pattern.
+    // ledBreathing(color, cycles)  — cycles=0 (default) means infinite; use 1–255 to stop after N breaths.
+    Serial.println(F("[ Breathing  |  fades in/out, cycles=0 = infinite ]"));
     show(F("Blue"),   fp.ledBreathing(FP_LED_BLUE));
     show(F("Green"),  fp.ledBreathing(FP_LED_GREEN));
     show(F("Red"),    fp.ledBreathing(FP_LED_RED));
@@ -67,14 +69,19 @@ void loop() {
     show(F("White"),  fp.ledBreathing(FP_LED_WHITE));
 
     // ── Flash ─────────────────────────────────────────────────────────────────
-    Serial.println(F("\n[ Flash  x3 ]"));
+    // LED blinks on/off rapidly.
+    // ledFlash(color, cycles)  — cycles=0 means infinite; any non-zero value stops after N flashes.
+    // Here cycles=3: the LED blinks 3 times then stops.
+    Serial.println(F("\n[ Flash  x3  |  blinks on/off, cycles=3 = stop after 3 ]"));
     show(F("Blue"),   fp.ledFlash(FP_LED_BLUE,   3));
     show(F("Green"),  fp.ledFlash(FP_LED_GREEN,  3));
     show(F("Red"),    fp.ledFlash(FP_LED_RED,    3));
     show(F("White"),  fp.ledFlash(FP_LED_WHITE,  3));
 
     // ── Steady on ─────────────────────────────────────────────────────────────
-    Serial.println(F("\n[ Steady On ]"));
+    // LED stays on at full brightness until the next LED command is sent.
+    // ledSteady(color)  — no cycles parameter; stays on indefinitely.
+    Serial.println(F("\n[ Steady On  |  constant brightness, stays until next command ]"));
     show(F("Blue"),   fp.ledSteady(FP_LED_BLUE));
     show(F("Green"),  fp.ledSteady(FP_LED_GREEN));
     show(F("Red"),    fp.ledSteady(FP_LED_RED));
@@ -83,14 +90,18 @@ void loop() {
     show(F("Purple"), fp.ledSteady(FP_LED_PURPLE));
 
     // ── Gradual open / close ──────────────────────────────────────────────────
-    Serial.println(F("\n[ Gradual ]"));
+    // One-shot fade animations — run once and stop (no cycles parameter).
+    // ledGradOpen(color)  — fades from off up to full brightness, then holds.
+    // ledGradClose(color) — fades from full brightness down to off.
+    Serial.println(F("\n[ Gradual    |  one-shot fade, open=off→full, close=full→off ]"));
     show(F("White  — open"),  fp.ledGradOpen(FP_LED_WHITE));
     show(F("White  — close"), fp.ledGradClose(FP_LED_WHITE));
     show(F("Blue   — open"),  fp.ledGradOpen(FP_LED_BLUE));
     show(F("Blue   — close"), fp.ledGradClose(FP_LED_BLUE));
 
     // ── Off ───────────────────────────────────────────────────────────────────
-    Serial.println(F("\n[ Off ]"));
+    // Turns the LED off immediately.
+    Serial.println(F("\n[ Off        |  turns LED off immediately ]"));
     show(F("LED off"), fp.ledOff(), 1000);
 
     Serial.println(F("\n-- loop --\n"));
