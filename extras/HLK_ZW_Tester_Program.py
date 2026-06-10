@@ -845,6 +845,9 @@ class App(QMainWindow):
                 return None, None
 
             length = struct.unpack('>H', buf[7:9])[0]
+            if length > 512:   # EF-01 ACK payloads are always small; cap against runaway reads
+                self.log_msg(f"SUSPICIOUS: packet claims {length} bytes — dropped")
+                return None, None
             total  = 9 + length
             while len(buf) < total and time.time() < deadline:
                 buf += self.ser.read(total - len(buf))
@@ -1178,6 +1181,8 @@ class App(QMainWindow):
 
     def cmd_delete_range(self):
         first, last = self.del_first.value(), self.del_last.value()
+        if first > last:
+            self.log_msg("ERROR: First ID must be ≤ Last ID"); return
         if QMessageBox.question(self, "Confirm", f"Delete IDs {first}–{last}?") != QMessageBox.StandardButton.Yes:
             return
         count = last - first + 1

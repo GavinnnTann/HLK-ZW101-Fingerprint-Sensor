@@ -84,6 +84,7 @@ uint16_t FingerprintModule::_readPacket(uint8_t *buf, uint16_t maxLen, uint32_t 
     if (buf[0] != 0xEF || buf[1] != 0x01) return 0;
 
     uint16_t length = ((uint16_t)buf[7] << 8) | buf[8];
+    if (length > maxLen - 9u) return 0;   // guard against wrap and OOB
     uint16_t total  = 9 + length;
     if (total > maxLen) return 0;
 
@@ -114,6 +115,7 @@ uint8_t FingerprintModule::_sendRecv(uint8_t ins, const uint8_t *params, uint8_t
 
     uint8_t  pid    = rxBuf[6];
     uint16_t length = ((uint16_t)rxBuf[7] << 8) | rxBuf[8];
+    if (length < 2) { lastCC = 0xFE; dataLen = 0; return 0xFE; }  // guard underflow
     uint16_t blen   = length - 2;           // body bytes (excludes the 2 CS bytes)
 
     const uint8_t *body = rxBuf + 9;
@@ -154,6 +156,7 @@ uint16_t FingerprintModule::_recvStream(uint8_t *out, uint16_t maxLen, uint32_t 
 
         // Read chunk + 2 CS bytes
         uint8_t pktBuf[300];
+        if (length > sizeof(pktBuf)) return received;  // guard stack overflow
         pos = 0;
         while (pos < length) {
             if (millis() > deadline) return received;
@@ -398,6 +401,7 @@ bool FingerprintModule::deleteFingerprint(uint16_t id) {
 }
 
 bool FingerprintModule::deleteRange(uint16_t firstId, uint16_t lastId) {
+    if (lastId < firstId) return false;    // guard underflow
     uint16_t count = lastId - firstId + 1;
     uint8_t p[4] = {
         (uint8_t)(firstId >> 8), (uint8_t)(firstId & 0xFF),
@@ -427,7 +431,7 @@ uint16_t FingerprintModule::getTemplateCount() {
 
 bool FingerprintModule::getStorageMap(bool *states, uint16_t maxSlots) {
     uint8_t p[1] = { 0x00 };   // page 0
-    uint8_t dout[36]; uint8_t dlen = 0;
+    uint8_t dout[72]; uint8_t dlen = 0;   // 72 > max EF-01 response body (70 bytes)
     if (_sendRecv(INS_READ_INDEX, p, 1, dout, dlen) != 0x00) return false;
     // Need ceil(maxSlots/8) bytes from the module to decode all requested slots
     uint16_t bytesNeeded = (maxSlots + 7) / 8;
@@ -461,6 +465,7 @@ bool FingerprintModule::exportTemplate(uint16_t id, uint8_t *buf,
 
     uint8_t  pid    = rxBuf[6];
     uint16_t length = ((uint16_t)rxBuf[7] << 8) | rxBuf[8];
+    if (length < 2) return false;
     uint16_t blen   = length - 2;
     const uint8_t *body = rxBuf + 9;
     uint16_t cs_recv = ((uint16_t)rxBuf[9 + blen] << 8) | rxBuf[9 + blen + 1];
@@ -489,6 +494,7 @@ bool FingerprintModule::importTemplate(uint16_t id, const uint8_t *buf, uint16_t
 
     uint8_t  pid    = rxBuf[6];
     uint16_t length = ((uint16_t)rxBuf[7] << 8) | rxBuf[8];
+    if (length < 2) return false;
     uint16_t blen   = length - 2;
     const uint8_t *body = rxBuf + 9;
     uint16_t cs_recv = ((uint16_t)rxBuf[9 + blen] << 8) | rxBuf[9 + blen + 1];
@@ -521,6 +527,7 @@ bool FingerprintModule::readInfoPage(char *productSN, char *swVersion,
 
     uint8_t  pid    = rxBuf[6];
     uint16_t length = ((uint16_t)rxBuf[7] << 8) | rxBuf[8];
+    if (length < 2) return false;
     uint16_t blen   = length - 2;
     const uint8_t *body = rxBuf + 9;
     uint16_t cs_recv = ((uint16_t)rxBuf[9 + blen] << 8) | rxBuf[9 + blen + 1];
