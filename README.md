@@ -6,8 +6,8 @@ An Arduino library and desktop tester for the HLK-ZW series capacitive fingerpri
 
 The original Hi-Link demo was in Chinese and lacked LED control. This project provides a complete Arduino driver with six example sketches, plus a Python-based GUI tester for exploring the sensor over USB without writing any firmware.
 
-<img src="Images/HL-ZW101%20Product.png" width="450" alt="Product Screenshot">
-<img src="Images/Program%20screenshot.png" width="450" alt="Program Screenshot">
+<img src="extras/Images/HL-ZW101%20Product.png" width="450" alt="Product Screenshot">
+<img src="extras/Images/Program%20screenshot.png" width="450" alt="Program Screenshot">
 
 ---
 
@@ -112,7 +112,7 @@ A standalone desktop tool for testing and managing the sensor over USB without w
 
 **FP Sensor (MX1.0-6P) → CH340 (Jumper)**
 
-<img src="Images/Circuit.png" width="450" alt="Setup">
+<img src="extras/Images/Circuit.png" width="450" alt="Setup">
 
 ### Wiring
 
@@ -125,7 +125,7 @@ Connect the module's wires to your USB-serial adapter as follows. Microcontrolle
 > **TOUCH_OUT (Blue):** Leave unconnected for USB testing.
 > For embedded use, connect to a GPIO — the sensor asserts this HIGH when a finger is detected,
 > making it suitable for interrupt-driven wakeup from deep sleep on ESP32/STM32.
-> Low power design is available — refer to the [datasheet](HLK-ZW101%20Datasheet.pdf).
+> Low power design is available — refer to the [datasheet](extras/HLK-ZW101%20Datasheet.pdf).
 
 | HLK-ZW101 Wire | Adapter Pin |
 |------|-------------|

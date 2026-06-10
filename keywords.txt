@@ -1,0 +1,64 @@
+#######################################
+# Syntax Coloring for HLK Fingerprint #
+#######################################
+
+# Classes (KEYWORD1 → orange)
+FingerprintModule	KEYWORD1
+FpEnrollStep	KEYWORD1
+FpResult	KEYWORD1
+
+# Methods (KEYWORD2 → brown/dark orange)
+begin	KEYWORD2
+powerOn	KEYWORD2
+powerOff	KEYWORD2
+ping	KEYWORD2
+sleep	KEYWORD2
+isFingerPresent	KEYWORD2
+verifyPassword	KEYWORD2
+enrollFingerprint	KEYWORD2
+getImage	KEYWORD2
+image2Tz	KEYWORD2
+createModel	KEYWORD2
+storeTemplate	KEYWORD2
+loadTemplate	KEYWORD2
+matchFingerprint	KEYWORD2
+deleteFingerprint	KEYWORD2
+deleteRange	KEYWORD2
+deleteAllFingerprints	KEYWORD2
+templateExists	KEYWORD2
+getTemplateCount	KEYWORD2
+getStorageMap	KEYWORD2
+exportTemplate	KEYWORD2
+importTemplate	KEYWORD2
+readInfoPage	KEYWORD2
+readSysParam	KEYWORD2
+setSecurityLevel	KEYWORD2
+setBaudReg	KEYWORD2
+setPacketSize	KEYWORD2
+setPassword	KEYWORD2
+setCapacity	KEYWORD2
+capacity	KEYWORD2
+ledAura	KEYWORD2
+ledOff	KEYWORD2
+ledOn	KEYWORD2
+ledBreathing	KEYWORD2
+ledFlash	KEYWORD2
+ledSteady	KEYWORD2
+ledGradOpen	KEYWORD2
+ledGradClose	KEYWORD2
+
+# Constants (LITERAL1 → teal)
+FP_LED_BLUE	LITERAL1
+FP_LED_GREEN	LITERAL1
+FP_LED_CYAN	LITERAL1
+FP_LED_RED	LITERAL1
+FP_LED_PURPLE	LITERAL1
+FP_LED_YELLOW	LITERAL1
+FP_LED_WHITE	LITERAL1
+FP_LED_OFF	LITERAL1
+FP_LED_FUNC_BREATHING	LITERAL1
+FP_LED_FUNC_FLASH	LITERAL1
+FP_LED_FUNC_STEADY	LITERAL1
+FP_LED_FUNC_OFF	LITERAL1
+FP_LED_FUNC_GRAD_OPEN	LITERAL1
+FP_LED_FUNC_GRAD_CLOSE	LITERAL1
