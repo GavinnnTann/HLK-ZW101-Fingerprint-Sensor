@@ -1,6 +1,6 @@
 # HLK-ZW Fingerprint Sensor
 
-[![Download](https://img.shields.io/github/v/release/GavinnnTann/HLK-ZW-Fingerprint-Sensor?label=Download%20Tester&style=for-the-badge)](https://github.com/GavinnnTann/HLK-ZW-Fingerprint-Sensor/releases/latest/download/HLK-ZW%20Tester%20Program.exe)
+[![Download](https://img.shields.io/github/v/release/GavinnnTann/HLK-ZW-Fingerprint-Sensor?label=Download%20Tester&style=for-the-badge)](https://github.com/GavinnnTann/HLK-ZW-Fingerprint-Sensor/releases/latest/download/HLK-ZW.Tester.Program.exe)
 
 An Arduino library and desktop tester for the HLK-ZW series capacitive fingerprint sensors (EF-01 UART protocol), manufactured by **Shenzhen Hi-Link Electronic Co., Ltd**. Supports HLK-ZW101, ZW111, ZW06xx, ZW09xx, ZW30xx, and other AS608/R307-compatible modules.
 
@@ -106,7 +106,7 @@ All examples include an optional **CTRL pin** for low-power circuit designs — 
 
 A standalone desktop tool for testing and managing the sensor over USB without writing firmware. Works with the CH340 adapter or an ESP32 running the `MCU_Adapter` sketch.
 
-**Download:** [HLK-ZW Tester Program.exe](https://github.com/GavinnnTann/HLK-ZW-Fingerprint-Sensor/releases/latest/download/HLK-ZW%20Tester%20Program.exe) — no Python required.
+**Download:** [HLK-ZW Tester Program.exe](https://github.com/GavinnnTann/HLK-ZW-Fingerprint-Sensor/releases/latest/download/HLK-ZW.Tester.Program.exe) — no Python required.
 
 ### Circuit
 
